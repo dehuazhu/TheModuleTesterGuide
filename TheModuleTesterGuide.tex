@@ -9,14 +9,24 @@
 %\setpygmentsfv{xleftmargin=4ex} %Pass fancyvrb options, in this case, left margin
 \usepackage{listings}
 \newcommand{\shellcmd}[1]{\\\indent\indent\texttt{\footnotesize\$ #1}\\}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\definecolor{Darkcyan}{RGB}{20,50,150}
+\definecolor{Red}{RGB}{200,0,0}
+\usepackage{graphicx}
+%\usepackage{siunitx}
 
+\newcommand{\prob}[1]{{\textbf{Problem: } #1}\newline}
+\newcommand{\sol}[1]{{\textbf{Solution: } #1 \newline \,\newline}}
+\newcommand{\testname}[1]{{\color{Darkcyan} \textsc{#1}}}
 
 
 \PaperTitle{The Module Tester Guide.} % Article title
 
 \Authors{ latest update on {\it \today}} % Authors
 \date{\today}
-\Abstract{This is a procedure description of performing CMS-BPIX-Module-Full-Qualification with the ETH Cleanroom-Cold-Box-setup. It can/should also be extended by Module Testing with Xray setup.}
+\Abstract{This is a procedure description of performing CMS-BPIX-Module-Full-Qualification with the ETH Cleanroom-Cold-Box-setup. It also describes the procedure of performing X-ray Qualification with the ETH Pixellab X-ray setup. The latest version can be found \href{http://kinder.ethz.ch:2700/compile?git=https://github.com/dehuazhu/TheModuleTesterGuide.git&target=TheModuleTesterGuide.tex}{here}. One can also get the github project \href{https://github.com/dehuazhu/TheModuleTesterGuide}{here}.}
 
 %----------------------------------------------------------------------------------------
 
@@ -33,7 +43,8 @@
 %----------------------------------------------------------------------------------------
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
-
+\newpage
+\part{Cold Box Qualification}
 \section{Before starting}
 For the Full Qualification in the cleanroom you will need the following components.
 \begin{itemize}
@@ -125,13 +136,12 @@ For starting elComandante, one does the following:
 \item Immediately (less than 2 minutes) run elComandante.
 \end{enumerate}
 To run elComandante, go to 
-\shellcmd{cd $\sim$/elComandanteFullQualification/elComandante}
+\shellcmd{cd $\sim$/elComandanteFullQualification/ \\ elComandante}
 and type
 \shellcmd{python el\_comandante.py}
 
 It is recommended to first do the Preliminary test and then proceed with the Full Qualification. The setting changes are explained in section \ref{elcom}. During the whole procedure, it would be wise to keep an eye on the log-output of elComandante, pXar client, JUMO client and Keithley client in case of any problems. Principally, one can now wait until the Test is done. 
 
-\newpage
 \section{Finishing the test}
 When elComandante has completed all foreseen tests, it will ask the user to take out the modules. Do so. Then it will ask to press enter and the test summary will be displayed. Then it will ask to press enter again to and the program and store the data. Do so. \\
 After the Modules are taken out and put in a safe place and the software is terminated, turn of the setup by.
@@ -143,7 +153,7 @@ After the Modules are taken out and put in a safe place and the software is term
 \item For the last, turn off the Cold Box.
 \end{enumerate}
 
-\section{What to do with the data}
+\section{What to do with the data}\label{postdata}
 \subsection{Create backup}
 The results are stored in a local folder and have to be moved to a shared folder. In order to do so, please copy only the new *.tar files results from 
 \shellcmd{/usr/local/coldboxDATA} 
@@ -160,11 +170,128 @@ The results will be available in
 
 \subsection{Upload to the database}
 This can be done by doing 
-\shellcmd{scp -P 23481 -i /data/Equipment/labcomputer/eth-pisa-key.rsa [tarFILE] eth@cmspixelprod.pi.infn.it:/home/eth/dropbox/}
+\shellcmd{scp -P 23481 -i /data/Equipment/labcomputer/ eth-pisa-key.rsa [tarFILE] eth@cmspixelprod.pi.infn.it: /home/eth/dropbox/}
 
 If modules tested already exist in the DB, just run:
-\shellcmd{scp -P 23481 -i /data/Equipment/labcomputer/eth-pisa-key.rsa [tarFILE] eth@cmspixelprod.pi.infn.it:/home/eth/dropbox/}
+\shellcmd{scp -P 23481 -i /data/Equipment/labcomputer/ eth-pisa-key.rsa [tarFILE] eth@cmspixelprod.pi.infn.it: /home/eth/dropbox/}
 changing the tar archive with the needed one for every module.
+
+\part{X-ray Qualification}
+
+\section{Operation of the X-ray setup}
+
+
+\begin{itemize}
+\item {Open valve entirely for X-ray cooling (1), and valve for module cooling (2) until the pressure is about 2 bar (check with left barometer in the X-ray setup).
+\begin{figure} [h!] \centering 
+\includegraphics[width=0.3\textwidth, angle=0] {./graphics/Water.jpg}
+\end{figure}
+}
+\item {Switch on X-ray machine (3).
+\begin{figure} [h!] \centering 
+\includegraphics[width=0.4\textwidth, angle=0] {./graphics/Full2.jpg}
+\end{figure}
+}
+\item {(Re)close the door of the X-ray setup housing, press round, green \textbf{START} button (4).}
+\item {Turn key to \textbf{ON}.
+\begin{figure} [h!] \centering 
+\includegraphics[width=0.4\textwidth, angle=0] {./graphics/CommandBoard2.jpg}
+\end{figure}
+}
+\item{Warm up X-ray tube by selecting \textbf{F7}. Enter the required current and voltage settings by selecting \textbf{F2, F4 or F6}. One shouldn't have very small values for currents with large voltages as well as the other way around. Suggested values are 60 kV and 30 mA for warming up the tube. Press \textbf{Enter} when finished, then \textbf{START} (square green one, 5). This will take up to 30 minutes depending on when the tube was operated the last time at this or a higher voltage. If the voltage is not set, check green interlock button (4) and the door, press \textbf{CL} to delete the error message.}
+\item {To control X-ray tube settings and targets during operation, use respectively \textbf{id3003} and \textbf{xrf} programs. Shutter 1 directs the beam to the targets, shutter 3 directs it to the modules. Available targets are Zn, Cu, Mo, Ag, Sn, Ba, Br (Screen). Some examples:
+\shellcmd{
+id3003.py open shutter 1\\
+id3003.py close shutter 1\\
+id3003.py set hv on\\
+id3003.py set hv off\\
+id3003.py set voltage 30\\
+id3003.py set current 10\\
+id3003.py get voltage\\
+id3003.py get current\\
+xrf Ag, xrf Mo\\
+xrf Screen\\
+}
+}
+\item{When taking a break, turn off high voltage and close the shutter. Turn key to \textbf{STAND BY}.}
+\end{itemize}
+
+
+\section{Set-up parameter directory}
+
+The parameters for the X-ray test are copied from the \testname{FullTest}@17 from the ColdBox.
+
+\begin{itemize}
+\item copy coldbox parameter folder \textbf{004\_FulltestPxar\_p17} to /data/moduleParameters, and rename to module name \textbf{Mxxx}
+\item either manually delete .root and .log files or (in /data/moduleParameters) use the script \textbf{python ./clean\_parameters\_folder.py -d Mxxx}
+\item  (temporary) copy \textbf{testParameters.dat} from /data/moduleParameters/testParameters.dat to \textbf{/data/moduleParameters/Mxxx/testParameters.dat}
+\end{itemize}
+
+\section{elComandante configuration}
+
+\begin{itemize}
+\item use elComandante from \textbf{/home/production/elComandante{\color{Red} Xray}/}
+\item check test chain in .ini file
+\item $[Tests]$:\\
+{\it {\bf Test} = PixelAlive@17$>$ GainPedestal@17$>$ RetrimHotPixels @150MHz/cm2$>$
+HRData@50MHz/cm2, HRData @150MHz/cm2, HRSCurves@100MHz/cm2,
+XraySpectrum@Zn, XraySpectrum@Mo, XraySpectrum@Ag, XraySpectrum@Sn,
+CalDelScanAndSaveDacs@4mA25kV$>$ HREfficiency@50MHz/cm2,
+HREfficiency@100MHz/cm2, HREfficiency@150MHz/cm2,
+HREfficiency@200MHz/cm2, HREfficiency@250MHz/cm2\\
+{\bf TestDescription} = XrayQualification}
+\end{itemize}
+
+%\shellcmd{$[Tests]$
+%Test = PixelAlive@17> GainPedestal@17> RetrimHotPixels@150MHz/cm2>
+%HRData@50MHz/cm2, HRData@150MHz/cm2, HRSCurves@100MHz/cm2,
+%XraySpectrum@Zn, XraySpectrum@Mo, XraySpectrum@Ag, XraySpectrum@Sn,
+%CalDelScanAndSaveDacs@4mA25kV> HREfficiency@50MHz/cm2,
+%HREfficiency@100MHz/cm2, HREfficiency@150MHz/cm2,
+%HREfficiency@200MHz/cm2, HREfficiency@250MHz/cm2
+%TestDescription = XrayQualification
+%}
+
+
+\section{Run test}
+
+\begin{itemize}
+\item use elComandante from \textbf{/home/production/elComandante{\color{Red} Xray}/elComandante}
+\item run ./el\_comandante.py
+\item scan modules with scanner from left to right, press enter for an empty position or if the module is the same than in the previous test.
+\end{itemize}
+
+
+\section{After test}
+
+\begin{itemize}
+\item check test list in elComandante output (below "Final cleanup after all tests ..."), status code should always be 1. A status code of $\neq 1$ or red color means error
+\item copy files from local directory (eg. /usr/local/data/) to /home/production/data, copying .tar files and extracting them is faster.
+\item analyze with MoReWeb
+\item update MoReWeb overview on our webserver, script \textbf{/home/production/ synchronize\_webserver.sh}
+\item write Elog entry
+\item upload to database
+\item the steps mentioned above are similar to the Cold Box qualification, which is documented in section \ref{postdata}.
+\end{itemize}
+
+
+\section{Switching off X-ray setup}
+\begin{itemize}
+\item {Close the shutter, turn off high voltage.}
+\item {Press \textbf{STOP} (6).}
+\item {Turn key to \textbf{OFF}.}
+\item {Turn off X-ray machine.}
+\item {Close both water valves.}
+\end{itemize}
+
+\section{Troubleshooting}
+
+\prob{DTBs are not detected by the computer, typical error message: Unable to detach testboard. Usbview is very slow and might or might not list all connected DTBs}
+\sol{Run the script \textbf{/home/production/reset\_usb.sh} (as root) or restart computer (only after agreement from the group).}
+\prob{Hot Pixel Re-trimming takes very long or finds more hot pixels than usual}
+\sol{Might be missing HV or wrong testParameters.dat file (for instance from an old pXar version)}
+\prob{Keithley is not turned on by elComandante}
+\sol{check if the \textbf{port} option in section \textbf{keithleyClient} in \textbf{elComandante.conf} is pointing to the correct device. Find the device by running the command \mbox{\textbf{findkeithley}} on production user. This device number can reset after reboot!}
 
 
 
