@@ -69,10 +69,11 @@ Turn on the Cold Box, select the program $p17$ and start it. Wait until the rela
 
 \subsection{Activating the setup}
 \begin{enumerate}
-\item Turn on the chiller. The main red switch closes the power circuit. The chiller is then turned on (if not already) by pressing for 5s the return button on the interface. The set temperature can be changed using up/down arrows and confirmed using the return button. It is usally set to $5^\circ$C. The chiller will now start to cool/heat the liquid, while pumping it through the cooling box pipes. 
+\item Activate the chiller by turning the main red switch to the vertical position. The set temperature can be changed using up/down arrows and confirmed using the return button. It is usally set to $5^\circ$C. The chiller will now start to cool/heat the liquid, while pumping it through the cooling box pipes. 
 \item Turn on both power supplies of the TEM outside the Cold Box. The voltage should be set to 12.7V on both PSs. 
 \item Activate all DTBs by plugging in the power cable. Check that the USB connection is also established. One can verify this by typing {\it usbview} in the Terminal. Also check that all DTBs are correctly connected to the Keithley. 
-\item Turn on the Keithley. From now on, there is a chance of a high voltage going through the setup. Therefore it is better not to touch the setup for safety reasons. 
+\item Turn on the Keithley. From now on, high voltage can be applied to the setup - be careful.
+\item Turn on the program p17 using the JUMO control panel of the Cold Box. 
 \end{enumerate}
 
 \subsection{Configure softwares}
@@ -80,7 +81,7 @@ One has to be sure that both softwares, {\it pXar} and {\it elComandante}, are c
 
 \subsubsection{pXar}
 Go to the pXar build directory. 
-\shellcmd{cd ~/pXar/build}
+\shellcmd{cd ~/pxar/build}
 Switch to the masterbranch.
 \shellcmd{git checkout master}
 If new default parameters need to be set (e.g. a module with a new TBM) or if on wishes to start pXar manually, do the following
@@ -149,7 +150,7 @@ After the Modules are taken out and put in a safe place and the software is term
 \item Turn off the Keithley.
 \item Unplug the power cables for the DTBs.
 \item Turn off the PSs.
-\item Turn off the chiller.
+\item Turn off the chiller by pressing the return button on the control panel until the program terminates. Then turn the main red switch to the horizontal position.
 \item For the last, turn off the Cold Box.
 \end{enumerate}
 
@@ -292,6 +293,8 @@ HREfficiency@200MHz/cm2, HREfficiency@250MHz/cm2\\
 \sol{Might be missing HV or wrong testParameters.dat file (for instance from an old pXar version)}
 \prob{Keithley is not turned on by elComandante}
 \sol{check if the \textbf{port} option in section \textbf{keithleyClient} in \textbf{elComandante.conf} is pointing to the correct device. Find the device by running the command \mbox{\textbf{findkeithley}} on production user. This device number can reset after reboot!}
+\prob{How to abort the program?}
+\sol{In case of emergency, terminate elComandante with Ctrl-C. The data should be stored in /usr/local/coldboxDATA. Then one can turn off the setup as described in section 5.}
 
 
 
@@ -310,7 +313,6 @@ HREfficiency@200MHz/cm2, HREfficiency@250MHz/cm2\\
 %----------------------------------------------------------------------------------------
 \phantomsection
 \bibliographystyle{unsrt}
-\bibliography{sample}
 
 %----------------------------------------------------------------------------------------
 
