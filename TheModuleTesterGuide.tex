@@ -80,6 +80,7 @@ Turn on the Cold Box, select the program $p17$ and start it. Wait until the rela
 One has to be sure that both softwares, {\it pXar} and {\it elComandante}, are correctly configured before starting. By default, the minimum amount of configuration needed is to adjust the {\it elComandante.ini} file. It is assumed that one is logged in with the {\it production} user.
 
 \subsubsection{pXar}
+This subsection is only needed if manual investigations are necessary.
 Go to the pXar build directory. 
 \shellcmd{cd ~/pxar/build}
 Switch to the masterbranch.
@@ -95,7 +96,11 @@ To start pXar for module MXXXX, do
 Elcomandante is supervising pXar, the Keithey and the Cold Box. There is an elComandante installation dedicated to Full Qualification with the cleanroom Cold Box in 
 \shellcmd{ $\sim$/elComandanteFullQualification} 
 Do not use elComandanteXray or elComandanteReception. \\
-It can be configured through two files:
+
+Stadard configuration files are already written. They can be called by tying 
+\shellcmd{python el\_comandante.py -I [.ini File 1] -I [.ini File 2] -C [Config File]}. If no manual changes are necessary, proceed to section 4. Performing Full Qualification.
+
+For manual adjustments of the configuration files, edit the follwing files:
 \shellcmd{configure/elComandante.ini}
 and
 \shellcmd{configure/elComandante.conf}
@@ -103,10 +108,9 @@ In elComandante.ini, the main fields to check are:
 \begin{itemize}
 \item $[Modules]$: insert here the module IDs
 \item $[Tests]$: for the Preliminary Test:\\
-{\it Test = Pretest@17, leakageCurrentPON@17}\\
+{\it Test = leakageCurrentPON@17,Pretest@17}\\
 {\it TestDescription = LeakageCurrentPON}
 
-At this stage modules with communication problems (errors in the log files) or bad sensors (high leakage current) can be identified and taken out of the box.
 \item $[Tests]$: for the Full Qualification:\\
 {\it Test = FulltestPxar@-20,Cycle,FulltestPxar@-20,IV@-20,FulltestPxar@17,IV@17}\\
 {\it TestDescription = FullQualification}
@@ -134,12 +138,16 @@ In elComandante.conf, one usually does not need to change anything. The main fie
 For starting elComandante, one does the following:
 \begin{enumerate}
 \item End any programs running locally on the JUMO. 
-\item Immediately (less than 2 minutes) run elComandante.
+\item Immediately (less than 2 minutes) run the preliminary test ($\approx$ 15 min) and afterwards the Full Qualification ($\approx$ 9 hours).
 \end{enumerate}
-To run elComandante, go to 
+To run the preliminary test, go to 
 \shellcmd{cd $\sim$/elComandanteFullQualification/ \\ elComandante}
 and type
-\shellcmd{python el\_comandante.py}
+\shellcmd{python el\_comandante.py -I LeakageCurrentPON -I Alerts -C Cleanroom}
+At this stage modules with communication problems (errors in the log files) or bad sensors (high leakage current) can be identified and taken out of the box, replaced by new modules.
+For the Full Qualification, type
+\shellcmd{python el\_comandante.py -I FullQualification -I Alerts -C Cleanroom}
+
 
 It is recommended to first do the Preliminary test and then proceed with the Full Qualification. The setting changes are explained in section \ref{elcom}. During the whole procedure, it would be wise to keep an eye on the log-output of elComandante, pXar client, JUMO client and Keithley client in case of any problems. Principally, one can now wait until the Test is done. 
 
