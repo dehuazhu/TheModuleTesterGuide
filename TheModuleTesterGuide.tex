@@ -49,17 +49,17 @@
 For the Full Qualification in the cleanroom you will need the following components.
 \begin{itemize}
 \item 1 Cold Box (currently Red October)
-\item 1 PC dedicated to the Cold Box (Currently Daim)
+\item 1 PC dedicated to the Cold Box (currently Daim)
 \item 4 (at least one) digital Modules
 \item As many Digital Test Boards as Modules
 \item 2 power suppliers for the Cold Box TEMs 
-\item 1 Keithley High Voltage Supplier
+\item 1 Keithley High Voltage Source
 \end{itemize}
-Check that everything except the PC is turned off. Place the Module Transportation Box/ Tray in a stable position close to the Cold Box.
+Check that everything except the PC is turned off. Place the Module Transportation Box/Tray in a stable position close to the Cold Box.
 
 
 \section{Placement of modules on the plate}
-Wear the ESD armband while performing this operation. Place one module at the time, starting from position 0 as marked on the plate. Then, connect the adaptor cards to the adaptor boards. In this phase, attention should be put at the length of the molex cable. Some cables might be too short to allow a proper insertion of the card, and the cable can be pulled off from the connector in the attempt to connect it. It is thus important to check that the position of the Testboard-plate allows for a safe installation of the adaptor cards. The molex cable should not be stretched and should be loose enough to be able to close the lid of the box without pulling it. The box can then be closed and turned on. A lead block is put on top of the lid to improve the sealing of the controlled volume. Now we can start and configure our devices for the Full Qualification.
+Wear the ESD armband while performing this operation. Place one module at the time, starting from position 0 as marked on the plate. Then, connect the adapter cards to the adapter boards. In this phase, attention should be put at the length of the Molex cable. Some cables might be too short to allow a proper insertion of the card, and the cable can be pulled off from the connector in the attempt to connect it. It is thus important to check that the position of the Testboard-plate allows for a safe installation of the adapter cards. The Molex cable should not be stretched and should be loose enough to be able to close the lid of the box without pulling it. The box can then be closed and turned on. A lead block is put on top of the lid to improve the sealing of the controlled volume. Now we can start and configure our devices for the Full Qualification.
 
 \section{Activating and configuring the setup}
 Until now, everything except the PC should still be turned off. It is important now to follow the procedure described below in the correct order. 
@@ -88,7 +88,7 @@ Switch to the masterbranch.
 If new default parameters need to be set (e.g. a module with a new TBM) or if on wishes to start pXar manually, do the following
 \shellcmd{../main/mkConfig -h }
 and follow the instructions. An example for a L2 Module would be 
-\shellcmd{../main/mkConfig -d ../data/M2068 -t TBM09C -r digv21respin -m}
+\shellcmd{../main/mkConfig -d ../data/MXXXX -t TBM09C -r digv21respin -m}
 To start pXar for module MXXXX, do
 \shellcmd{../bin/pXar -d ../data/MXXXX -g}
 
