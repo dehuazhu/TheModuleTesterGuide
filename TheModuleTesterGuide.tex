@@ -167,15 +167,20 @@ After the Modules are taken out and put in a safe place and the software is term
 The results are stored in a local folder and have to be moved to a shared folder. In order to do so, please copy only the new *.tar files results from 
 \shellcmd{/usr/local/coldboxDATA} 
 to
-\shellcmd{/home/production/data}
+\shellcmd{/home/production/dataCH}
 
 \subsection{MoReWeb Analysis}
-MoreWeb results should be carried out on an external hard drive. Connect to the PC with the external harddrive, copy the results from /home/production/data to the external drive, untar them by doing 
+MoreWeb results should be carried out on an external hard drive at /mnt/sdb1/. Connect to the PC with the external harddrive, copy the results from /home/production/data to the external drive, untar them by doing 
 \shellcmd{tar -xf $[$FILE$]$}
 and run MoReWeb by doing 
 \shellcmd{python $\sim$/MoReWeb/Analyse/Controller.py -new}. 
 The results will be available in 
-\shellcmd {Overview/Overview.html}
+\shellcmd {/mnt/sdb1/Overview/Overview.html}
+
+\subsection{Synchronize with the Group-Webserver}
+In order to synchronize with the ETH IPP groupserver \newline 
+(www.cmspixel.phys.ethz.ch), run the shellscrip in the external harddrive by doing
+\shellcmd {./synchronize\_webserver.sh}
 
 \subsection{Upload to the database}
 This can be done by doing 
