@@ -208,7 +208,7 @@ changing the tar archive with the needed one for every module.
 \end{figure}
 }
 \item{Warm up X-ray tube by selecting \textbf{F7}. Enter the required current and voltage settings by selecting \textbf{F2, F4 or F6}. One shouldn't have very small values for currents with large voltages as well as the other way around. Suggested values are 60 kV and 30 mA for warming up the tube. Press \textbf{Enter} when finished, then \textbf{START} (square green one, 5). This will take up to 30 minutes depending on when the tube was operated the last time at this or a higher voltage. If the voltage is not set, check green interlock button (4) and the door, press \textbf{CL} to delete the error message.}
-\item {To control X-ray tube settings and targets during operation, use respectively \textbf{id3003} and \textbf{xrf} programs. Shutter 1 directs the beam to the targets, shutter 3 directs it to the modules. Available targets are Zn, Cu, Mo, Ag, Sn, Ba, Br (Screen). Some examples:
+\item {To control X-ray tube settings and targets during operation (usually not needed during X-ray qualification), use respectively \textbf{id3003} and \textbf{xrf} programs. Shutter 1 directs the beam to the targets, shutter 3 directs it to the modules. Available targets are Zn, Cu, Mo, Ag and Sn. Some examples:
 \shellcmd{
 id3003.py open shutter 1\\
 id3003.py close shutter 1\\
@@ -219,10 +219,9 @@ id3003.py set current 10\\
 id3003.py get voltage\\
 id3003.py get current\\
 xrf Ag, xrf Mo\\
-xrf Screen\\
 }
 }
-\item{When taking a break, turn off high voltage and close the shutter. Turn key to \textbf{STAND BY}.}
+\item{When taking a break, close the shutter and turn off high voltage. Turn key to \textbf{STAND BY}.}
 \end{itemize}
 
 
@@ -231,18 +230,17 @@ xrf Screen\\
 The parameters for the X-ray test are copied from the \testname{FullTest}@17 from the ColdBox.
 
 \begin{itemize}
-\item copy coldbox parameter folder \textbf{004\_FulltestPxar\_p17} to /data/moduleParameters, and rename to module name \textbf{Mxxx}
-\item either manually delete .root and .log files or (in /data/moduleParameters) use the script \textbf{python ./clean\_parameters\_folder.py -d Mxxx}
-\item  (temporary) copy \textbf{testParameters.dat} from /data/moduleParameters/testParameters.dat to \textbf{/data/moduleParameters/Mxxx/testParameters.dat}
+\item Copy coldbox parameter folder \textbf{004\_FulltestPxar\_p17} to /data/moduleParameters, and rename to module name \textbf{Mxxx}
+\item Either manually delete .root and .log files or (in /data/moduleParameters) use the script \textbf{python ./clean\_parameters\_folder.py -d Mxxx}
 \end{itemize}
 
 \section{elComandante configuration}
 
 \begin{itemize}
-\item use elComandante from \textbf{/home/production/elComandante{\color{Red} Xray}/}
-\item check test chain in .ini file
-\item $[Tests]$:\\
-{\it {\bf Test} = PixelAlive@17$>$ GainPedestal@17$>$ RetrimHotPixels @150MHz/cm2$>$
+\item Change elComandante .config/.ini files from \textbf{/home/production/elComandante{\color{Red} Xray}/config}
+\item Check test chain in .ini file: \\
+ $[Tests]$:\\
+{\it {\bf Test} = PixelAlive@17$>$ GainPedestal@17$>$ RetrimHotPixels @150MHz/cm2$>$ RetrimHotPixels @50MHz/cm2$>$
 HRData@50MHz/cm2, HRData @150MHz/cm2, HRSCurves@100MHz/cm2,
 XraySpectrum@Zn, XraySpectrum@Mo, XraySpectrum@Ag, XraySpectrum@Sn,
 CalDelScanAndSaveDacs@4mA25kV$>$ HREfficiency@50MHz/cm2,
@@ -265,22 +263,24 @@ HREfficiency@200MHz/cm2, HREfficiency@250MHz/cm2\\
 \section{Run test}
 
 \begin{itemize}
-\item use elComandante from \textbf{/home/production/elComandante{\color{Red} Xray}/elComandante}
-\item run ./el\_comandante.py
-\item scan modules with scanner from left to right, press enter for an empty position or if the module is the same than in the previous test.
+\item Use elComandante from \textbf{/home/production/elComandante{\color{Red} Xray}/elComandante}
+\item Run ./el\_comandante.py (or press green button on toolbar)
+\item Scan modules with scanner from left to right, press enter if the module is the same than in the previous test. If one position is not occupied, the corresponding testboard needs to be deactivated in the .ini file.
 \end{itemize}
 
 
 \section{After test}
 
 \begin{itemize}
-\item check test list in elComandante output (below "Final cleanup after all tests ..."), status code should always be 1. A status code of $\neq 1$ or red color means error
-\item copy files from local directory (eg. /usr/local/data/) to /home/production/data, copying .tar files and extracting them is faster.
-\item analyze with MoReWeb
-\item update MoReWeb overview on our webserver, script \textbf{/home/production/ synchronize\_webserver.sh}
-\item write Elog entry
-\item upload to database
-\item the steps mentioned above are similar to the Cold Box qualification, which is documented in section \ref{postdata}.
+\item Check test list in elComandante output (below "Final cleanup after all tests ..."), status code should always be 1. A status code of $\neq 1$ or red color means error
+\item Copy .tar files from local directory (eg. /usr/local/data/) to /home/production/data
+\item Copy files to external hard drive, copying .tar files and extracting them is faster.
+\item Analyze with MoReWeb
+\item Update MoReWeb overview on our webserver, script \textbf{/home/production/ synchronize\_webserver.sh}
+\item Write Elog entry
+\item Upload to database
+\item Update Sharepoint table
+\item The steps mentioned above are similar to the Cold Box qualification, which is documented in section \ref{postdata}.
 \end{itemize}
 
 
@@ -302,7 +302,7 @@ HREfficiency@200MHz/cm2, HREfficiency@250MHz/cm2\\
 \prob{Keithley is not turned on by elComandante}
 \sol{check if the \textbf{port} option in section \textbf{keithleyClient} in \textbf{elComandante.conf} is pointing to the correct device. Find the device by running the command \mbox{\textbf{findkeithley}} on production user. This device number can reset after reboot!}
 \prob{How to abort the program?}
-\sol{In case of emergency, terminate elComandante with Ctrl-C. The data should be stored in /usr/local/coldboxDATA. Then one can turn off the setup as described in section 5.}
+\sol{In case of emergency, terminate elComandante with Ctrl-C. The data should be stored in /usr/local/coldboxDATA. Then one can turn off the setup as described in section 12.}
 
 
 
