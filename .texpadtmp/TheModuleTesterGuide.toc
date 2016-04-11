@@ -1,0 +1,26 @@
+\select@language {english}
+\contentsline {part}{I\hspace {1em}Cold Box Qualification}{1}{part.1}
+\contentsline {section}{\numberline {1}Before starting}{1}{section.1}
+\contentsline {section}{\numberline {2}Placement of modules on the plate}{1}{section.2}
+\contentsline {section}{\numberline {3}Activating and configuring the setup}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Reducing the humidity}{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Activating the setup}{2}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Configure softwares}{2}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}pXar}{2}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}elComandante}{2}{subsubsection.3.3.2}
+\contentsline {section}{\numberline {4}Performing Full Qualification}{3}{section.4}
+\contentsline {section}{\numberline {5}Finishing the test}{3}{section.5}
+\contentsline {section}{\numberline {6}What to do with the data}{3}{section.6}
+\contentsline {subsection}{\numberline {6.1}Create backup}{3}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}MoReWeb Analysis}{3}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Synchronize with the Group-Webserver}{3}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Upload to the database}{3}{subsection.6.4}
+\contentsline {part}{II\hspace {1em}X-ray Qualification}{3}{part.2}
+\contentsline {section}{\numberline {7}Operation of the X-ray setup}{3}{section.7}
+\contentsline {section}{\numberline {8}Set-up parameter directory}{4}{section.8}
+\contentsline {section}{\numberline {9}elComandante configuration}{4}{section.9}
+\contentsline {section}{\numberline {10}Run test}{4}{section.10}
+\contentsline {section}{\numberline {11}After test}{5}{section.11}
+\contentsline {section}{\numberline {12}Switching off X-ray setup}{5}{section.12}
+\contentsline {section}{\numberline {13}Troubleshooting}{5}{section.13}
+\contentsfinish 
