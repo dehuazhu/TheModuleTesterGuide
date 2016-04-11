@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 FEB 2016 10:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 APR 2016 14:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1375,48 +1375,59 @@ Package pdftex.def Info: ./graphics/CommandBoard2.jpg used on input line 212.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 216--230
+Underfull \hbox (badness 10000) in paragraph at lines 216--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--230
+Underfull \hbox (badness 10000) in paragraph at lines 216--229
 
  []
 
 
-Overfull \hbox (65.53876pt too wide) in paragraph at lines 240--241
+Overfull \hbox (65.53876pt too wide) in paragraph at lines 239--240
 \OT1/ptm/m/n/10 (-20) mod-ulePa-ram-e-ters) use the script \OT1/ptm/b/n/10 pyth
 on ./clean[]parameters[]folder.py
  []
 
 
-Overfull \hbox (2.85541pt too wide) in paragraph at lines 249--257
+Overfull \hbox (2.85541pt too wide) in paragraph at lines 246--255
 \OT1/ptm/b/n/10 Test \OT1/ptm/m/it/10 (-20) = PixelAlive@17$\OML/ztmcm/m/it/10 
 >$ \OT1/ptm/m/it/10 (-20) GainPedestal@17$\OML/ztmcm/m/it/10 >$ \OT1/ptm/m/it/1
 0 (-20) Re-trimHot-
  []
 
 
-Overfull \hbox (6.32562pt too wide) in paragraph at lines 249--257
+Overfull \hbox (11.52484pt too wide) in paragraph at lines 246--255
 \OT1/ptm/m/it/10 (-20) Pix-els @150MHz/cm2$\OML/ztmcm/m/it/10 >$ \OT1/ptm/m/it/
-10 (-20) HRData@50MHz/cm2, HRData
+10 (-20) Re-trimHot-Pix-els @50MHz/cm2$\OML/ztmcm/m/it/10 >$
  []
 
 
-Overfull \hbox (26.58963pt too wide) in paragraph at lines 249--257
-\OT1/ptm/m/it/10 (-20) trum@Zn, XraySpec-trum@Mo, XraySpec-trum@Ag, XraySpec-
+Overfull \hbox (85.36926pt too wide) in paragraph at lines 246--255
+\OT1/ptm/m/it/10 (-20) HRData@50MHz/cm2, HRData @150MHz/cm2, HRSCurves@100MHz/c
+m2,
  []
 
 
-Overfull \hbox (6.33919pt too wide) in paragraph at lines 249--257
-\OT1/ptm/m/it/10 (-20) trum@Sn, CalDelScanAndSaveDacs@4mA25kV$\OML/ztmcm/m/it/1
-0 >$ \OT1/ptm/m/it/10 (-20) HREf-
+Overfull \hbox (20.90627pt too wide) in paragraph at lines 246--255
+\OT1/ptm/m/it/10 (-20) XraySpec-trum@Zn, XraySpec-trum@Mo, XraySpec-trum@Ag,
  []
 
 
-Overfull \hbox (15.0941pt too wide) in paragraph at lines 249--257
-\OT1/ptm/m/it/10 (-20) fi-ciency@50MHz/cm2, HREf-fi-ciency@100MHz/cm2, HREf-
+Overfull \hbox (18.15373pt too wide) in paragraph at lines 246--255
+\OT1/ptm/m/it/10 (-20) XraySpec-trum@Sn, CalDelScanAndSaveDacs@4mA25kV$\OML/ztm
+cm/m/it/10 >$
+ []
+
+
+Overfull \hbox (9.18443pt too wide) in paragraph at lines 246--255
+\OT1/ptm/m/it/10 (-20) HREf-fi-ciency@50MHz/cm2, HREf-fi-ciency@100MHz/cm2,
+ []
+
+
+Overfull \hbox (14.08443pt too wide) in paragraph at lines 246--255
+\OT1/ptm/m/it/10 (-20) HREf-fi-ciency@150MHz/cm2, HREf-fi-ciency@200MHz/cm2,
  []
 
 [4 <./graphics/Water.jpg> <./graphics/Full2.jpg> <./graphics/CommandBoard2.jpg>
@@ -1447,9 +1458,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 303--311
 
 
 AED: lastpage setting LastPage
-[5
-
-]
+[5]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
 
@@ -1462,11 +1471,11 @@ Package rerunfilecheck Info: File `TheModuleTesterGuide.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 332.
  ) 
 Here is how much of TeX's memory you used:
- 15659 strings out of 493089
- 246512 string characters out of 6134842
+ 15647 strings out of 493089
+ 246398 string characters out of 6134842
  397379 words of memory out of 5000000
  18605 multiletter control sequences out of 15000+600000
- 67199 words of font info for 242 fonts, out of 8000000 for 9000
+ 66559 words of font info for 234 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,11n,49p,947b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -1480,7 +1489,7 @@ ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
 Output written on /Users/zhud/Dropbox/PhD/3_Literature/Manuals/FullQualificatio
-n/.texpadtmp/TheModuleTesterGuide.pdf (5 pages, 341622 bytes).
+n/.texpadtmp/TheModuleTesterGuide.pdf (5 pages, 341770 bytes).
 PDF statistics:
  249 PDF objects out of 1000 (max. 8388607)
  205 compressed objects within 3 object streams
